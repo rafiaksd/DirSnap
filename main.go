@@ -127,25 +127,25 @@ func loadSnapshot(filename string) (*Snapshot, error) {
 func diffSnapshots(oldSnap, newSnap *Snapshot) {
 	seen := make(map[string]bool)
 
-	fmt.Println("🔍 Differences:\n")
+	fmt.Print("Differences:\n")
 
 	for path, oldFile := range oldSnap.Files {
 		newFile, exists := newSnap.Files[path]
 		seen[path] = true
 
 		if !exists {
-			fmt.Println("❌ Deleted:", path)
+			fmt.Println("Deleted:", path)
 			continue
 		}
 
 		if oldFile.Hash != newFile.Hash {
-			fmt.Println("✏️ Modified:", path)
+			fmt.Println("Modified:", path)
 		}
 	}
 
 	for path := range newSnap.Files {
 		if !seen[path] {
-			fmt.Println("🆕 Added:", path)
+			fmt.Println("Added:", path)
 		}
 	}
 }
