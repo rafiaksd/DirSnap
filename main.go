@@ -134,18 +134,18 @@ func diffSnapshots(oldSnap, newSnap *Snapshot) {
 		seen[path] = true
 
 		if !exists {
-			fmt.Println("Deleted:", path)
+			fmt.Println("🗑️ Deleted:", path)
 			continue
 		}
 
 		if oldFile.Hash != newFile.Hash {
-			fmt.Println("Modified:", path)
+			fmt.Println("✏️ Modified:", path)
 		}
 	}
 
 	for path := range newSnap.Files {
 		if !seen[path] {
-			fmt.Println("Added:", path)
+			fmt.Println("💥 Added:", path)
 		}
 	}
 }
